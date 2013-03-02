@@ -10,8 +10,8 @@ import org.junit.Test;
 public class BattleTest {
 
     class TestBattle extends Battle {
-        World w1 = new World();
-        World w2 = new World();
+        World w1 = new World(1);
+        World w2 = new World(2);
 
         @Override
         public void start() {
