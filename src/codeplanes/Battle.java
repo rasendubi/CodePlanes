@@ -4,9 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Battle {
-    public interface Handler {
-        void turn(World world);
-    }
+    private List<Handler> handlers = new LinkedList<Handler>();
 
     public abstract void start();
 
@@ -20,5 +18,8 @@ public abstract class Battle {
         }
     }
 
-    private List<Handler> handlers = new LinkedList<Handler>();
+    public interface Handler {
+        void turn(World world);
+    }
+
 }

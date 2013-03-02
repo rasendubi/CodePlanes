@@ -28,8 +28,8 @@ public class BattleCollectorTest {
 
         battle.start();
 
-        assertEquals(battle.w1, collector.worlds.get(0));
-        assertEquals(battle.w2, collector.worlds.get(1));
-        assertEquals(battle.w3, collector.worlds.get(2));
+        assertEquals(battle.w1, collector.getWorlds().get(0));
+        assertEquals(battle.w2, collector.getWorlds().get(1));
+        assertEquals(battle.w3, collector.getWorlds().get(2));
     }
 }

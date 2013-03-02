@@ -5,9 +5,13 @@ import java.util.List;
 
 public class BattleCollector implements Battle.Handler {
 
-    public List<World> worlds = new ArrayList<World>();
+    private List<World> worlds = new ArrayList<>();
 
-    public void turn(World world) {
+    final public List<World> getWorlds() {
+        return worlds;
+    }
+
+    final public void turn(World world) {
         worlds.add(world);
     }
 
