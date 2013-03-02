@@ -13,12 +13,12 @@ public class World {
     }
 
     @Override
-    final public int hashCode() {
+    public int hashCode() {
         return tick;
     }
 
     @Override
-    final public boolean equals(Object obj) {
+    public boolean equals(Object obj) {
         if (!(obj instanceof World)) {
             return false;
         } else {
