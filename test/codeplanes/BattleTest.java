@@ -35,10 +35,10 @@ public class BattleTest {
     @Test
     public void testBattleHandlers() {
         TestBattle battle = new TestBattle();
-        
+
         TestHandler h1 = new TestHandler();
         TestHandler h2 = new TestHandler();
-        
+
         battle.addHandler(h1);
         battle.addHandler(h2);
 

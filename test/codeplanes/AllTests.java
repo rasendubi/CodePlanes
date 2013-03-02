@@ -5,10 +5,10 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ 
+@SuiteClasses({
       BattleCollectorTest.class
     , BattleTest.class
-    , WorldTest.class 
+    , WorldTest.class
 })
 public class AllTests {
 
