@@ -1,7 +1,5 @@
 package codeplanes;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,19 +51,20 @@ public class BattleCollector extends Battle
         int index = 0;
         @Override
         public boolean hasNext() {
-            return worlds.size() > index;  //To change body of implemented methods use File | Settings | File Templates.
+            return worlds.size() > index;
         }
 
         @Override
         public World next() {
             if (hasNext())
                 return worlds.get(index++);
-            else throw new NoSuchElementException();
+            else
+                throw new NoSuchElementException();
         }
 
         @Override
         public void remove() {
-            throw new NotImplementedException();
+            throw new UnsupportedOperationException();
         }
     }
 }

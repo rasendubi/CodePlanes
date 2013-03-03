@@ -2,11 +2,11 @@ package codeplanes;
 
 import static org.junit.Assert.*;
 
+import java.lang.UnsupportedOperationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.junit.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class BattleCollectorTest {
 
@@ -81,12 +81,11 @@ public class BattleCollectorTest {
         assertTrue(iter.hasNext());
         assertEquals(iter.next(), new World(1));
 
-        boolean notImplementedThrown = false;
         try {
             iter.remove();
-        } catch (NotImplementedException e) {
-            notImplementedThrown = true;
+            fail("Deletion success");
+        } catch (UnsupportedOperationException e) {
+
         }
-        assertTrue(notImplementedThrown);
     }
 }
