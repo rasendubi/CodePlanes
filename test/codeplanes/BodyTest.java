@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.HashSet;
 
 public class BodyTest {
 
@@ -19,6 +20,13 @@ public class BodyTest {
         assertFalse(b1.equals(b3));
         assertFalse(b1.equals(b4));
         assertFalse(b3.equals(b4));
+    }
+
+    @Test
+    public void testHashCode() {
+        HashSet<Body> hashSet = new HashSet<>();
+        hashSet.add(new Body(0, new Point(1, 1)));
+        assertTrue(hashSet.contains(new Body(0, new Point(1,1))));
     }
 
 

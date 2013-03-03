@@ -13,6 +13,13 @@ public class Body {
     }
 
     @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (position != null ? position.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Body)) {
             return false;
