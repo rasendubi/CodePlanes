@@ -3,8 +3,10 @@ package codeplanes;
 import static org.junit.Assert.*;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class BattleCollectorTest {
 
@@ -55,5 +57,36 @@ public class BattleCollectorTest {
             assertEquals(senderIter.next(), w1);
         }
         assertFalse(senderIter.hasNext());
+    }
+
+    @Test
+    public void testIterator() {
+        BattleCollector collector = new BattleCollector();
+        Iterator<World> iter = collector.iterator();
+
+        assertFalse(collector.iterator().hasNext());
+        boolean noSuchElementThrown = false;
+        try {
+            collector.iterator().next();
+        } catch (NoSuchElementException e) {
+            noSuchElementThrown = true;
+        }
+        assertTrue(noSuchElementThrown);
+
+        collector.turn(new World(1));
+        for (World world : collector)
+            world = new World(3);
+
+        iter = collector.iterator();
+        assertTrue(iter.hasNext());
+        assertEquals(iter.next(), new World(1));
+
+        boolean notImplementedThrown = false;
+        try {
+            iter.remove();
+        } catch (NotImplementedException e) {
+            notImplementedThrown = true;
+        }
+        assertTrue(notImplementedThrown);
     }
 }

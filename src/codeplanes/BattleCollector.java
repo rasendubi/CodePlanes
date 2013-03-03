@@ -1,8 +1,11 @@
 package codeplanes;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BattleCollector extends Battle
         implements Battle.Handler, Iterable<World> {
@@ -43,6 +46,26 @@ public class BattleCollector extends Battle
 
     @Override
     public Iterator<World> iterator() {
-        return worlds.iterator();
+        return new BattleCollectorIterator();
+    }
+
+    class BattleCollectorIterator implements Iterator<World> {
+        int index = 0;
+        @Override
+        public boolean hasNext() {
+            return worlds.size() > index;  //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public World next() {
+            if (hasNext())
+                return worlds.get(index++);
+            else throw new NoSuchElementException();
+        }
+
+        @Override
+        public void remove() {
+            throw new NotImplementedException();
+        }
     }
 }
