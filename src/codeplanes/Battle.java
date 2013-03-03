@@ -12,7 +12,7 @@ public abstract class Battle {
         return handlers.add(handler);
     }
 
-    final protected void turn(World world) {
+    final protected void turnEnd(World world) {
         for (Handler handler : handlers) {
             handler.turn(world);
         }

@@ -1,6 +1,6 @@
 package codeplanes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ public class BattleTest {
 
         @Override
         public void start() {
-            turn(w1);
-            turn(w2);
+            turnEnd(w1);
+            turnEnd(w2);
         }
     }
 

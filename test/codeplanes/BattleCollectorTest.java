@@ -1,6 +1,8 @@
 package codeplanes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
 
 import org.junit.Test;
 
@@ -13,9 +15,9 @@ public class BattleCollectorTest {
 
         @Override
         public void start() {
-            turn(w1);
-            turn(w2);
-            turn(w3);
+            turnEnd(w1);
+            turnEnd(w2);
+            turnEnd(w3);
         }
     }
 
@@ -31,5 +33,18 @@ public class BattleCollectorTest {
         assertEquals(battle.w1, collector.getWorlds().get(0));
         assertEquals(battle.w2, collector.getWorlds().get(1));
         assertEquals(battle.w3, collector.getWorlds().get(2));
+    }
+
+    @Test
+    public void testTransfer() {
+        BattleCollector sender = new BattleCollector();
+        sender.getWorlds().addAll(Arrays.asList(new World(1), new World(3), new World(2)));
+
+        BattleCollector receiver = new BattleCollector();
+        sender.addHandler(receiver);
+
+        sender.start();
+
+        assertEquals(sender.getWorlds(), receiver.getWorlds());
     }
 }
