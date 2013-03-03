@@ -52,7 +52,7 @@ public class BattleCollectorTest {
 
         sender.start();
 
-        assertFalse(sender.equals(receiver));
+        assertTrue(sender.equals(receiver));
         Iterator<World> senderIter = sender.iterator();
         for (World w1 : receiver) {
             assertTrue(senderIter.hasNext());
