@@ -1,5 +1,7 @@
 package codeplanes;
 
+import java.awt.*;
+
 public class Body {
 
     final private int id;
@@ -19,39 +21,5 @@ public class Body {
         Body that = (Body)obj;
         return this.id == that.id &&
                this.position.equals(that.position);
-    }
-}
-
-class Point {
-    final private int x;
-    final private int y;
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public Point(Point copy) {
-        this.x = copy.x;
-        this.y = copy.y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Point)) {
-            return false;
-        }
-
-        Point that = (Point) obj;
-        return this.x == that.x &&
-               this.y == that.y;
     }
 }

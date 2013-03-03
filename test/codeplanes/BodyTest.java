@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import java.awt.*;
+
 public class BodyTest {
 
     @Test
@@ -19,10 +21,5 @@ public class BodyTest {
         assertFalse(b3.equals(b4));
     }
 
-    @Test
-    public void testPointEquals() {
-        assertTrue(new Point(1,2).equals(new Point(1,2)));
-        assertFalse(new Point(1,2).equals(new Point(1,3)));
-    }
 
 }
