@@ -73,8 +73,6 @@ public class BattleCollectorTest {
         }
 
         collector.turn(new World(1));
-        for (World world : collector)
-            world = new World(3);
 
         iter = collector.iterator();
         assertTrue(iter.hasNext());
