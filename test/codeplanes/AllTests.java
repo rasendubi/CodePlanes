@@ -8,6 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
       BattleCollectorTest.class
     , BattleTest.class
+    , BodyTest.class
     , WorldTest.class
 })
 public class AllTests {
