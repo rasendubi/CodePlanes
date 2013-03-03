@@ -1,13 +1,9 @@
 package codeplanes;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
-import org.hamcrest.internal.ArrayIterator;
 import org.junit.Test;
 
 public class BattleCollectorTest {
@@ -32,7 +28,7 @@ public class BattleCollectorTest {
 
         battle.start();
 
-        Iterator collectorIter = collector.iterator();
+        Iterator<World> collectorIter = collector.iterator();
         for (World battleWorld : battle.worlds) {
             assertTrue(collectorIter.hasNext());
             assertEquals(battleWorld, collectorIter.next());

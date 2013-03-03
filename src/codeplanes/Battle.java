@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Battle {
-    private List<Handler> handlers = new LinkedList<Handler>();
+    private List<Handler> handlers = new LinkedList<>();
 
 
     public abstract void start();
