@@ -65,13 +65,12 @@ public class BattleCollectorTest {
         Iterator<World> iter = collector.iterator();
 
         assertFalse(collector.iterator().hasNext());
-        boolean noSuchElementThrown = false;
         try {
             collector.iterator().next();
+            fail("Next success");
         } catch (NoSuchElementException e) {
-            noSuchElementThrown = true;
+
         }
-        assertTrue(noSuchElementThrown);
 
         collector.turn(new World(1));
         for (World world : collector)
