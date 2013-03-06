@@ -29,7 +29,7 @@ public class BattleTest {
             ++count;
         }
 
-        List<World> worlds = new ArrayList<World>();
+        List<World> worlds = new ArrayList<>();
     }
 
     @Test

@@ -30,12 +30,12 @@ public class BattleCollectorTest {
 
         battle.start();
 
-        Iterator<World> collectorIter = collector.iterator();
+        Iterator<World> collectorIt= collector.iterator();
         for (World battleWorld : battle.worlds) {
-            assertTrue(collectorIter.hasNext());
-            assertEquals(battleWorld, collectorIter.next());
+            assertTrue(collectorIt.hasNext());
+            assertEquals(battleWorld, collectorIt.next());
         }
-        assertFalse(collectorIter.hasNext());
+        assertFalse(collectorIt.hasNext());
     }
 
     @Test
@@ -51,18 +51,17 @@ public class BattleCollectorTest {
         sender.start();
 
         assertTrue(sender.equals(receiver));
-        Iterator<World> senderIter = sender.iterator();
+        Iterator<World> senderIt = sender.iterator();
         for (World w1 : receiver) {
-            assertTrue(senderIter.hasNext());
-            assertEquals(senderIter.next(), w1);
+            assertTrue(senderIt.hasNext());
+            assertEquals(senderIt.next(), w1);
         }
-        assertFalse(senderIter.hasNext());
+        assertFalse(senderIt.hasNext());
     }
 
     @Test
     public void testIterator() {
         BattleCollector collector = new BattleCollector();
-        Iterator<World> iter = collector.iterator();
 
         assertFalse(collector.iterator().hasNext());
         try {
@@ -74,12 +73,12 @@ public class BattleCollectorTest {
 
         collector.turn(new World(1));
 
-        iter = collector.iterator();
-        assertTrue(iter.hasNext());
-        assertEquals(iter.next(), new World(1));
+        Iterator<World> it = collector.iterator();
+        assertTrue(it.hasNext());
+        assertEquals(it.next(), new World(1));
 
         try {
-            iter.remove();
+            it.remove();
             fail("Deletion success");
         } catch (UnsupportedOperationException e) {
 
