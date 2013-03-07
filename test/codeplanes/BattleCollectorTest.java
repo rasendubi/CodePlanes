@@ -1,12 +1,15 @@
 package codeplanes;
 
-import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
-import java.lang.UnsupportedOperationException;
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class BattleCollectorTest {
 
@@ -20,6 +23,9 @@ public class BattleCollectorTest {
             }
         }
     }
+
+    @Rule
+    public TemporaryFolder temp = new TemporaryFolder();
 
     @Test
     public void testCollector() {
@@ -83,5 +89,23 @@ public class BattleCollectorTest {
         } catch (UnsupportedOperationException e) {
 
         }
+    }
+
+    @Test
+    public void testSerialization() throws IOException {
+        final File file = temp.newFile("test_battle.json");
+
+        final TestBattle testBattle = new TestBattle();
+
+        final BattleCollector written = new BattleCollector();
+
+        testBattle.addHandler(written);
+        testBattle.start();
+
+        written.serialize(file);
+
+        final BattleCollector read = BattleCollector.deserialize(file);
+
+        assertEquals(written, read);
     }
 }

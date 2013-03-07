@@ -1,5 +1,10 @@
 package codeplanes;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +13,15 @@ import java.util.NoSuchElementException;
 public class BattleCollector extends Battle
         implements Battle.Handler, Iterable<World> {
 
-    final private List<World> worlds = new ArrayList<>();
+    final private List<World> worlds;
+
+    public BattleCollector() {
+        this.worlds = new ArrayList<>();
+    }
+
+    public BattleCollector(final List<World> worlds) {
+        this.worlds = worlds;
+    }
 
     @Override
     final public void turn(final World world) {
@@ -20,6 +33,20 @@ public class BattleCollector extends Battle
         for (final World world : worlds) {
             turnEnd(world);
         }
+    }
+
+    public void serialize(final File file) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+
+        mapper.writeValue(file, this.worlds);
+    }
+
+    public static BattleCollector deserialize(final File file) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+
+        final List<World> worlds = mapper.readValue(file, new TypeReference<ArrayList<World>>() {});
+
+        return new BattleCollector(worlds);
     }
 
     @Override

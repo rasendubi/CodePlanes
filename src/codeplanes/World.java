@@ -1,10 +1,14 @@
 package codeplanes;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class World {
 
     private final int tick;
 
-    World(final int tick) {
+    @JsonCreator
+    World(@JsonProperty("tick") final int tick) {
         this.tick = tick;
     }
 
