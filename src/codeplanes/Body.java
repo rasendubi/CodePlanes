@@ -1,6 +1,6 @@
 package codeplanes;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class Body {
 
