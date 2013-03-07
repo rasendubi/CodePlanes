@@ -23,6 +23,20 @@ public class BodyTest {
     }
 
     @Test
+    public void testGetters() {
+        final Body body = new Body(1, new Point(2,3));
+        final Point position = body.getPosition();
+
+        assertEquals(position, new Point(2,3));
+        position.setLocation(3,2);
+
+        assertFalse(position.equals(body.getPosition()));
+
+        final int id = body.getId();
+        assertEquals(id, 1);
+    }
+
+    @Test
     public void testHashCode() {
         final HashSet<Body> hashSet = new HashSet<>();
         hashSet.add(new Body(0, new Point(1, 1)));

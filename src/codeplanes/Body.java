@@ -12,6 +12,14 @@ public class Body {
         this.position = new Point(position);
     }
 
+    public final int getId() {
+        return id;
+    }
+
+    public final Point getPosition() {
+        return new Point(position);
+    }
+
     @Override
     public int hashCode() {
         int result = id;
