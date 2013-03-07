@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 public class BattleCollector extends Battle
         implements Battle.Handler, Iterable<World> {
 
-    private List<World> worlds = new ArrayList<>();
+    final private List<World> worlds = new ArrayList<>();
 
     @Override
     final public void turn(World world) {
@@ -29,16 +29,14 @@ public class BattleCollector extends Battle
 
         BattleCollector that = (BattleCollector) o;
 
-        if (worlds != null ? !worlds.equals(that.worlds) : that.worlds != null)
-            return false;
+        return worlds.equals(that.worlds);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (worlds != null ? worlds.hashCode() : 0);
+        result = 31 * result + worlds.hashCode();
         return result;
     }
 

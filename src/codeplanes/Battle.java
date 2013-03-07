@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Battle {
-    private List<Handler> handlers = new LinkedList<>();
+    final private List<Handler> handlers = new LinkedList<>();
 
 
     public abstract void start();
@@ -30,14 +30,11 @@ public abstract class Battle {
 
         Battle battle = (Battle) o;
 
-        if (handlers != null ? !handlers.equals(battle.handlers) : battle.handlers != null)
-            return false;
-
-        return true;
+        return handlers.equals(battle.handlers);
     }
 
     @Override
     public int hashCode() {
-        return handlers != null ? handlers.hashCode() : 0;
+        return handlers.hashCode();
     }
 }
