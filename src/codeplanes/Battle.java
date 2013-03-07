@@ -9,12 +9,12 @@ public abstract class Battle {
 
     public abstract void start();
 
-    final public boolean addHandler(Handler handler) {
+    final public boolean addHandler(final Handler handler) {
         return handlers.add(handler);
     }
 
-    final protected void turnEnd(World world) {
-        for (Handler handler : handlers) {
+    final protected void turnEnd(final World world) {
+        for (final Handler handler : handlers) {
             handler.turn(world);
         }
     }
@@ -24,11 +24,15 @@ public abstract class Battle {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-        Battle battle = (Battle) o;
+        final Battle battle = (Battle) o;
 
         return handlers.equals(battle.handlers);
     }

@@ -11,23 +11,27 @@ public class BattleCollector extends Battle
     final private List<World> worlds = new ArrayList<>();
 
     @Override
-    final public void turn(World world) {
+    final public void turn(final World world) {
         worlds.add(world);
     }
 
     @Override
     public void start() {
-        for (World world : worlds) {
+        for (final World world : worlds) {
             turnEnd(world);
         }
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-        BattleCollector that = (BattleCollector) o;
+        final BattleCollector that = (BattleCollector) o;
 
         return worlds.equals(that.worlds);
 
@@ -54,10 +58,11 @@ public class BattleCollector extends Battle
 
         @Override
         public World next() {
-            if (hasNext())
+            if (hasNext()) {
                 return worlds.get(index++);
-            else
+            } else {
                 throw new NoSuchElementException();
+            }
         }
 
         @Override

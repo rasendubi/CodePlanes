@@ -4,7 +4,7 @@ public class World {
 
     private final int tick;
 
-    World(int tick) {
+    World(final int tick) {
         this.tick = tick;
     }
 
@@ -18,11 +18,11 @@ public class World {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (!(obj instanceof World)) {
             return false;
         } else {
-            World that = (World)obj;
+            final World that = (World)obj;
             return this.tick == that.tick;
         }
 
