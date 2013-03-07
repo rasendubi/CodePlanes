@@ -24,14 +24,14 @@ public class BattleCollector extends Battle
     }
 
     @Override
-    final public void turn(final World world) {
+    final public void onTurn(final World world) {
         worlds.add(world);
     }
 
     @Override
     public void start() {
         for (final World world : worlds) {
-            turnEnd(world);
+            turn(world);
         }
     }
 

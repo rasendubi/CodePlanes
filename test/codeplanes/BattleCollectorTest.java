@@ -19,7 +19,7 @@ public class BattleCollectorTest {
         @Override
         public void start() {
             for (final World world : worlds) {
-                turnEnd(world);
+                turn(world);
             }
         }
     }
@@ -47,9 +47,9 @@ public class BattleCollectorTest {
     @Test
     public void testTransfer() {
         final BattleCollector sender = new BattleCollector();
-        sender.turn(new World(1));
-        sender.turn(new World(3));
-        sender.turn(new World(2));
+        sender.onTurn(new World(1));
+        sender.onTurn(new World(3));
+        sender.onTurn(new World(2));
 
         final BattleCollector receiver = new BattleCollector();
         sender.addHandler(receiver);
@@ -77,7 +77,7 @@ public class BattleCollectorTest {
 
         }
 
-        collector.turn(new World(1));
+        collector.onTurn(new World(1));
 
         final Iterator<World> it = collector.iterator();
         assertTrue(it.hasNext());

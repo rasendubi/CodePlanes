@@ -15,8 +15,8 @@ public class BattleTest {
 
         @Override
         public void start() {
-            turnEnd(w1);
-            turnEnd(w2);
+            turn(w1);
+            turn(w2);
         }
     }
 
@@ -24,7 +24,7 @@ public class BattleTest {
         int count = 0;
 
         @Override
-        public void turn(final World world) {
+        public void onTurn(final World world) {
             worlds.add(world);
             ++count;
         }

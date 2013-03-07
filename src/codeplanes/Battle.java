@@ -13,14 +13,14 @@ public abstract class Battle {
         return handlers.add(handler);
     }
 
-    final protected void turnEnd(final World world) {
+    final protected void turn(final World world) {
         for (final Handler handler : handlers) {
-            handler.turn(world);
+            handler.onTurn(world);
         }
     }
 
     public interface Handler {
-        void turn(World world);
+        void onTurn(World world);
     }
 
     @Override
