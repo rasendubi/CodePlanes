@@ -36,7 +36,7 @@ public class BattleCollectorTest {
 
         battle.start();
 
-        final Iterator<World> collectorIt= collector.iterator();
+        final Iterator<World> collectorIt = collector.iterator();
         for (final World battleWorld : battle.worlds) {
             assertTrue(collectorIt.hasNext());
             assertEquals(battleWorld, collectorIt.next());

@@ -15,7 +15,7 @@ public class Body {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (position != null ? position.hashCode() : 0);
+        result = 31 * result + position.hashCode();
         return result;
     }
 
