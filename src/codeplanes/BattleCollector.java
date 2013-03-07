@@ -20,7 +20,7 @@ public class BattleCollector extends Battle
     }
 
     public BattleCollector(final List<World> worlds) {
-        this.worlds = worlds;
+        this.worlds = new ArrayList<>(worlds);
     }
 
     @Override
