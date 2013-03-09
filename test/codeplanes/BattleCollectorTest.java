@@ -70,25 +70,22 @@ public class BattleCollectorTest {
         final BattleCollector collector = new BattleCollector();
 
         assertFalse(collector.iterator().hasNext());
-        try {
-            collector.iterator().next();
-            fail("Next success");
-        } catch (NoSuchElementException e) {
-
-        }
 
         collector.onTurn(new World(1));
 
         final Iterator<World> it = collector.iterator();
         assertTrue(it.hasNext());
         assertEquals(it.next(), new World(1));
+    }
 
-        try {
-            it.remove();
-            fail("Deletion success");
-        } catch (UnsupportedOperationException e) {
+    @Test(expected = NoSuchElementException.class)
+    public void testNextInEmpty() {
+        new BattleCollector().iterator().next();
+    }
 
-        }
+    @Test(expected = UnsupportedOperationException.class)
+    public void testRemove() {
+        new BattleCollector().iterator().remove();
     }
 
     @Test
