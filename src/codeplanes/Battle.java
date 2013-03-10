@@ -6,8 +6,14 @@ import java.util.List;
 public abstract class Battle {
     final private List<Handler> handlers = new LinkedList<>();
 
+    protected abstract void run();
 
-    public abstract void start();
+    final public void start() {
+        for (final Handler handler : handlers) {
+            handler.onStart();
+        }
+        run();
+    }
 
     final public boolean addHandler(final Handler handler) {
         return handlers.add(handler);
@@ -20,6 +26,7 @@ public abstract class Battle {
     }
 
     public interface Handler {
+        void onStart();
         void onTurn(World world);
     }
 

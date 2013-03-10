@@ -1,6 +1,6 @@
 package codeplanes;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class BattleTest {
         World w2 = new World(2);
 
         @Override
-        public void start() {
+        protected void run() {
             turn(w1);
             turn(w2);
         }
@@ -22,6 +22,14 @@ public class BattleTest {
 
     class TestHandler implements Battle.Handler {
         int count = 0;
+        boolean startCalled = false;
+
+        @Override
+        public void onStart() {
+            count = 0;
+            worlds.clear();
+            startCalled = true;
+        }
 
         @Override
         public void onTurn(final World world) {
@@ -43,6 +51,9 @@ public class BattleTest {
         battle.addHandler(h2);
 
         battle.start();
+
+        assertTrue(h1.startCalled);
+        assertTrue(h2.startCalled);
 
         assertEquals("Handler1 count", 2, h1.count);
         assertEquals("Handler2 count", 2, h2.count);

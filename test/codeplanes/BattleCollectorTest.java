@@ -17,7 +17,7 @@ public class BattleCollectorTest {
         World[] worlds = { new World(1), new World(2), new World(3) };
 
         @Override
-        public void start() {
+        protected void run() {
             for (final World world : worlds) {
                 turn(world);
             }
@@ -34,6 +34,24 @@ public class BattleCollectorTest {
         final TestBattle battle = new TestBattle();
         battle.addHandler(collector);
 
+        battle.start();
+
+        final Iterator<World> collectorIt = collector.iterator();
+        for (final World battleWorld : battle.worlds) {
+            assertTrue(collectorIt.hasNext());
+            assertEquals(battleWorld, collectorIt.next());
+        }
+        assertFalse(collectorIt.hasNext());
+    }
+
+    @Test
+    public void testSequentialCall() {
+        final BattleCollector collector = new BattleCollector();
+
+        final TestBattle battle = new TestBattle();
+        battle.addHandler(collector);
+
+        battle.start();
         battle.start();
 
         final Iterator<World> collectorIt = collector.iterator();

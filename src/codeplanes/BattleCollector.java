@@ -24,12 +24,17 @@ public class BattleCollector extends Battle
     }
 
     @Override
+    final public void onStart() {
+        worlds.clear();
+    }
+
+    @Override
     final public void onTurn(final World world) {
         worlds.add(world);
     }
 
     @Override
-    public void start() {
+    public void run() {
         for (final World world : worlds) {
             turn(world);
         }
