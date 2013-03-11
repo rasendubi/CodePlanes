@@ -2,9 +2,18 @@ package codeplanes;
 
 import java.awt.Point;
 
+/**
+ * The common class for bodies in the battle simulation.
+ */
 public class Body {
 
+    /**
+     * Identifier of the object.
+     */
     final private int id;
+    /**
+     * Coordinates of object in the world.
+     */
     final private Point position;
 
     public Body(final int id, final Point position) {

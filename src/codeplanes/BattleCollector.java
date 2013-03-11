@@ -10,15 +10,25 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Collects states of every battle turn and reproduces them in same sequence.
+ */
 public class BattleCollector extends Battle
         implements Battle.Handler, Iterable<World> {
 
+    /**
+     * List of all worlds' states.
+     */
     final private List<World> worlds;
 
     public BattleCollector() {
         this.worlds = new ArrayList<>();
     }
 
+    /**
+     * Create battle from sequence of worlds' states.
+     * @param worlds List of worlds' states.
+     */
     public BattleCollector(final List<World> worlds) {
         this.worlds = new ArrayList<>(worlds);
     }
@@ -40,12 +50,23 @@ public class BattleCollector extends Battle
         }
     }
 
+    /**
+     * Write battle record in the file.
+     * @param file File to write battle in.
+     * @throws IOException
+     */
     public void serialize(final File file) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
 
         mapper.writeValue(file, this.worlds);
     }
 
+    /**
+     * Read battle record from file.
+     * @param file The file to read battle from.
+     * @return Battle record read.
+     * @throws IOException
+     */
     public static BattleCollector deserialize(final File file) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
 
