@@ -9,6 +9,7 @@ import org.junit.runners.Suite.SuiteClasses;
       BattleCollectorTest.class
     , BattleTest.class
     , BodyTest.class
+    , PlaneTest.class
     , WorldTest.class
 })
 public class AllTests {
