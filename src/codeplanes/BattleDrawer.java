@@ -8,7 +8,7 @@ import java.awt.Color;
  * Class which draws battle course.
  */
 public class BattleDrawer extends JPanel implements Battle.Handler {
-    World world = new World(0);
+    private World world = new World(0);
     private int delay = 10;
 
     void setDelay(final int delay) {

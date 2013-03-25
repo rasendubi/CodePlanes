@@ -9,14 +9,14 @@ public class BattleDrawerTest extends JFrame {
         add(battleDrawer);
     }
 
-    public void setBattle(Battle battle) {
+    public void setBattle(final Battle battle) {
         battle.addHandler(battleDrawer);
     }
 
-    public static void main(String[] args) {
-        BattleDrawerTest battleDrawerTest = new BattleDrawerTest();
+    public static void main(final String[] args) {
+        final BattleDrawerTest battleDrawerTest = new BattleDrawerTest();
 
-        BattleCollector battle = new BattleCollector();
+        final BattleCollector battle = new BattleCollector();
         battle.onStart();
         for (int i = 0; i < 1000; ++i) {
             final World world = new World(i);

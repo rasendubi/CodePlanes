@@ -8,9 +8,9 @@ import java.awt.Point;
 import java.util.HashSet;
 
 public class PlaneTest {
-    final private Plane plane1 = new Plane(0, new Point(1,1), 3.1, 0);
-    final private Plane plane2 = new Plane(0, new Point(1,1), 3.1, 0);
-    final private Plane plane3 = new Plane(3, new Point(3,3), 2.2, 4);
+    final private Plane plane1 = new Plane(0, new Point(1,1), 3.1, 3.5, 0);
+    final private Plane plane2 = new Plane(0, new Point(1,1), 3.1, 3.5, 0);
+    final private Plane plane3 = new Plane(3, new Point(3,3), 2.2, 3.5, 4);
 
     @Test
     public void testEquals() {

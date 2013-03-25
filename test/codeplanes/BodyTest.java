@@ -11,10 +11,10 @@ public class BodyTest {
 
     @Test
     public void testEquals() {
-        final Body b1 = new Body(1, new Point(2,3));
-        final Body b2 = new Body(1, new Point(2,3));
-        final Body b3 = new Body(2, new Point(2,3));
-        final Body b4 = new Body(2, new Point(2,4));
+        final Body b1 = new Body(1, new Point(2,3), 3.5, 4.5);
+        final Body b2 = new Body(1, new Point(2,3), 3.5, 4.5);
+        final Body b3 = new Body(2, new Point(2,3), 3.5, 4.5);
+        final Body b4 = new Body(2, new Point(2,4), 3.5, 4.5);
 
         assertTrue(b1.equals(b2));
         assertFalse(b1.equals(b3));
@@ -24,7 +24,7 @@ public class BodyTest {
 
     @Test
     public void testGetters() {
-        final Body body = new Body(1, new Point(2,3));
+        final Body body = new Body(1, new Point(2,3), 4.5, 6.7);
         final Point position = body.getPosition();
 
         assertEquals(position, new Point(2,3));
@@ -32,15 +32,16 @@ public class BodyTest {
 
         assertFalse(position.equals(body.getPosition()));
 
-        final int id = body.getId();
-        assertEquals(id, 1);
+        assertEquals(1, body.getId());
+        assertEquals(4.5, body.getAngle(), 0);
+        assertEquals(6.7, body.getSpeed(), 0);
     }
 
     @Test
     public void testHashCode() {
         final HashSet<Body> hashSet = new HashSet<>();
-        hashSet.add(new Body(0, new Point(1, 1)));
-        assertTrue(hashSet.contains(new Body(0, new Point(1,1))));
+        hashSet.add(new Body(0, new Point(1, 1), 2, 3));
+        assertTrue(hashSet.contains(new Body(0, new Point(1,1), 2, 3)));
     }
 
 

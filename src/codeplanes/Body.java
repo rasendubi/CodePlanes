@@ -16,9 +16,15 @@ public class Body {
      */
     final private Point position;
 
-    public Body(final int id, final Point position) {
+    final private double angle;
+
+    final private double speed;
+
+    public Body(final int id, final Point position, final double  angle, final double speed) {
         this.id = id;
         this.position = new Point(position);
+        this.angle = angle;
+        this.speed = speed;
     }
 
     public final int getId() {
@@ -29,9 +35,30 @@ public class Body {
         return new Point(position);
     }
 
+    /**
+     *
+     * @return Clockwise angle in radians between vector of bullet direction and x-axis
+     */
+    public final double getAngle() {
+        return angle;
+    }
+
+    /**
+     *
+     * @return speed of bullet
+     */
+    public final double getSpeed() {
+        return speed;
+    }
+
     @Override
     public int hashCode() {
         int result = id;
+        long temp;
+        temp = angle != +0.0d ? Double.doubleToLongBits(angle) : 0L;
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = speed != +0.0d ? Double.doubleToLongBits(speed) : 0L;
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + position.hashCode();
         return result;
     }
@@ -44,6 +71,8 @@ public class Body {
 
         final Body that = (Body) obj;
         return this.id == that.id &&
+               Double.compare(this.speed, that.speed) == 0 &&
+               Double.compare(this.angle, that.angle) == 0 &&
                this.position.equals(that.position);
     }
 }
