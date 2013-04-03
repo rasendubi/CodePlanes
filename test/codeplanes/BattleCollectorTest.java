@@ -6,6 +6,7 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -14,7 +15,11 @@ import static org.junit.Assert.*;
 public class BattleCollectorTest {
 
     class TestBattle extends Battle {
-        World[] worlds = { new World(1), new World(2), new World(3) };
+        World[] worlds = {
+                new World(1, new ArrayList<Bullet>()),
+                new World(2, new ArrayList<Bullet>()),
+                new World(3, new ArrayList<Bullet>())
+        };
 
         @Override
         protected void run() {
@@ -66,9 +71,10 @@ public class BattleCollectorTest {
     @Test
     public void testTransfer() {
         final BattleCollector sender = new BattleCollector();
-        sender.onTurn(new World(1));
-        sender.onTurn(new World(3));
-        sender.onTurn(new World(2));
+        sender.onStart(800, 600);
+        sender.onTurn(new World(1, new ArrayList<Bullet>()));
+        sender.onTurn(new World(3, new ArrayList<Bullet>()));
+        sender.onTurn(new World(2, new ArrayList<Bullet>()));
 
         final BattleCollector receiver = new BattleCollector();
         sender.addHandler(receiver);
@@ -90,11 +96,11 @@ public class BattleCollectorTest {
 
         assertFalse(collector.iterator().hasNext());
 
-        collector.onTurn(new World(1));
+        collector.onTurn(new World(1, new ArrayList<Bullet>()));
 
         final Iterator<World> it = collector.iterator();
         assertTrue(it.hasNext());
-        assertEquals(it.next(), new World(1));
+        assertEquals(it.next(), new World(1, new ArrayList<Bullet>()));
     }
 
     @Test(expected = NoSuchElementException.class)

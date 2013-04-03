@@ -4,15 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class WorldTest {
 
     @Test
     public void testEquals() {
-        final World w1 = new World(1);
-        final World w2 = new World(1);
-        final World w3 = new World(2);
+        final World w1 = new World(1, new ArrayList<Bullet>());
+        final World w2 = new World(1, new ArrayList<Bullet>());
+        final World w3 = new World(2, new ArrayList<Bullet>());
 
         assertFalse(w1.equals(null));
         assertTrue(w1.equals(w2));

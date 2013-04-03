@@ -3,6 +3,9 @@ package codeplanes;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents state of world on every turn.
  */
@@ -13,13 +16,16 @@ public class World {
      */
     private final int tick;
 
+    private final List<Bullet> bullets;
+
     /**
      * Main constructor.
      * @param tick Number of battle tick.
      */
     @JsonCreator
-    World(@JsonProperty("tick") final int tick) {
+    World(@JsonProperty("tick") final int tick, @JsonProperty("bullets") final List<Bullet> bullets) {
         this.tick = tick;
+        this.bullets = new ArrayList<>(bullets);
     }
 
     /**
@@ -28,6 +34,10 @@ public class World {
      */
     final public int getTick() {
         return tick;
+    }
+
+    final public List<Bullet> getBullets() {
+        return new ArrayList<>(bullets);
     }
 
     @Override

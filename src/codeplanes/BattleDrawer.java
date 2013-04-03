@@ -3,12 +3,13 @@ package codeplanes;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * Class which draws battle course.
  */
 public class BattleDrawer extends JPanel implements Battle.Handler {
-    private World world = new World(0);
+    private World world = new World(0, new ArrayList<Bullet>());
     private int delay = 10;
 
     void setDelay(final int delay) {
@@ -17,7 +18,7 @@ public class BattleDrawer extends JPanel implements Battle.Handler {
 
     @Override
     public void onStart(final double width, final double height) {
-        world = new World(0);
+        world = new World(0, new ArrayList<Bullet>());
         setSize((int)width, (int)height);
         repaint();
     }
@@ -45,5 +46,14 @@ public class BattleDrawer extends JPanel implements Battle.Handler {
         final char[] tick = String.valueOf(world.getTick()).toCharArray();
         final int tickX = 10, tickY = 20;
         g.drawChars(tick, 0, tick.length, tickX, tickY);
+
+        // Draw bullets
+        for (final Bullet bullet : world.getBullets()) {
+            g.drawRect(
+                    (int)bullet.getPosition().getX(),
+                    (int)bullet.getPosition().getY(),
+                    5,5
+            );
+        }
     }
 }
