@@ -16,8 +16,9 @@ public class BattleDrawer extends JPanel implements Battle.Handler {
     }
 
     @Override
-    public void onStart() {
+    public void onStart(final double width, final double height) {
         world = new World(0);
+        setSize((int)width, (int)height);
         repaint();
     }
 

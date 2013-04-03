@@ -1,5 +1,6 @@
 package codeplanes;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,7 +20,12 @@ public class BattleCollector extends Battle
     /**
      * List of all worlds' states.
      */
+    @JsonProperty("worlds")
     final private List<World> worlds;
+    @JsonProperty("height")
+    private double height;
+    @JsonProperty("width")
+    private double width;
 
     public BattleCollector() {
         this.worlds = new ArrayList<>();
@@ -34,8 +40,10 @@ public class BattleCollector extends Battle
     }
 
     @Override
-    final public void onStart() {
+    final public void onStart(final double width, final double height) {
         worlds.clear();
+        this.width = width;
+        this.height = height;
     }
 
     @Override
@@ -45,6 +53,7 @@ public class BattleCollector extends Battle
 
     @Override
     public void run() {
+        start(width, height);
         for (final World world : worlds) {
             turn(world);
         }
@@ -58,7 +67,7 @@ public class BattleCollector extends Battle
     public void serialize(final File file) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
 
-        mapper.writeValue(file, this.worlds);
+        mapper.writeValue(file, this);
     }
 
     /**
@@ -70,9 +79,7 @@ public class BattleCollector extends Battle
     public static BattleCollector deserialize(final File file) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
 
-        final List<World> worlds = mapper.readValue(file, new TypeReference<ArrayList<World>>() {});
-
-        return new BattleCollector(worlds);
+        return mapper.readValue(file, BattleCollector.class);
     }
 
     @Override
@@ -86,7 +93,9 @@ public class BattleCollector extends Battle
 
         final BattleCollector that = (BattleCollector) o;
 
-        return worlds.equals(that.worlds);
+        return worlds.equals(that.worlds) &&
+               this.width  == that.width  &&
+               this.height == that.height;
 
     }
 

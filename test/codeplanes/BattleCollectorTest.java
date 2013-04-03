@@ -18,6 +18,7 @@ public class BattleCollectorTest {
 
         @Override
         protected void run() {
+            start(800, 600);
             for (final World world : worlds) {
                 turn(world);
             }
@@ -34,7 +35,7 @@ public class BattleCollectorTest {
         final TestBattle battle = new TestBattle();
         battle.addHandler(collector);
 
-        battle.start();
+        battle.run();
 
         final Iterator<World> collectorIt = collector.iterator();
         for (final World battleWorld : battle.worlds) {
@@ -51,8 +52,8 @@ public class BattleCollectorTest {
         final TestBattle battle = new TestBattle();
         battle.addHandler(collector);
 
-        battle.start();
-        battle.start();
+        battle.run();
+        battle.run();
 
         final Iterator<World> collectorIt = collector.iterator();
         for (final World battleWorld : battle.worlds) {
@@ -72,7 +73,7 @@ public class BattleCollectorTest {
         final BattleCollector receiver = new BattleCollector();
         sender.addHandler(receiver);
 
-        sender.start();
+        sender.run();
 
         assertTrue(sender.equals(receiver));
         final Iterator<World> senderIt = sender.iterator();
@@ -115,7 +116,7 @@ public class BattleCollectorTest {
         final BattleCollector written = new BattleCollector();
 
         testBattle.addHandler(written);
-        testBattle.start();
+        testBattle.run();
 
         written.serialize(file);
 

@@ -15,6 +15,7 @@ public class BattleTest {
 
         @Override
         protected void run() {
+            start(2.5, 3.6);
             turn(w1);
             turn(w2);
         }
@@ -23,12 +24,16 @@ public class BattleTest {
     class TestHandler implements Battle.Handler {
         int count = 0;
         boolean startCalled = false;
+        double width;
+        double height;
 
         @Override
-        public void onStart() {
+        public void onStart(final double width, final double height) {
             count = 0;
             worlds.clear();
             startCalled = true;
+            this.width = width;
+            this.height = height;
         }
 
         @Override
@@ -50,7 +55,7 @@ public class BattleTest {
         battle.addHandler(h1);
         battle.addHandler(h2);
 
-        battle.start();
+        battle.run();
 
         assertTrue(h1.startCalled);
         assertTrue(h2.startCalled);
@@ -63,6 +68,12 @@ public class BattleTest {
 
         assertEquals("Handler1 2nd world", battle.w2, h1.worlds.get(1));
         assertEquals("Handler2 2nd world", battle.w2, h2.worlds.get(1));
+
+        assertEquals(2.5, h1.width, 0);
+        assertEquals(2.5, h2.width, 0);
+
+        assertEquals(3.6, h1.height, 0);
+        assertEquals(3.6, h2.height, 0);
     }
 
 }

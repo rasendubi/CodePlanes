@@ -18,13 +18,12 @@ public abstract class Battle {
     protected abstract void run();
 
     /**
-     * Notify all handlers about battle is started and actually start it.
+     * Notify all handlers about battle is started.
      */
-    final public void start() {
+    final protected void start(final double width, final double height) {
         for (final Handler handler : handlers) {
-            handler.onStart();
+            handler.onStart(width, height);
         }
-        run();
     }
 
     /**
@@ -53,7 +52,7 @@ public abstract class Battle {
         /**
          * Called on start of the battle.
          */
-        void onStart();
+        void onStart(final double width, final double height);
         /**
          * Called on every turn end.
          * @param world State of the world after turn.

@@ -17,7 +17,7 @@ public class BattleDrawerTest extends JFrame {
         final BattleDrawerTest battleDrawerTest = new BattleDrawerTest();
 
         final BattleCollector battle = new BattleCollector();
-        battle.onStart();
+        battle.onStart(500, 500);
         for (int i = 0; i < 1000; ++i) {
             final World world = new World(i);
             battle.onTurn(world);
@@ -25,10 +25,10 @@ public class BattleDrawerTest extends JFrame {
 
         battleDrawerTest.setBattle(battle);
 
-        battleDrawerTest.setSize(500, 500);
+        battleDrawerTest.setSize(500,500);
         battleDrawerTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         battleDrawerTest.setVisible(true);
 
-        battle.start();
+        battle.run();
     }
 }
