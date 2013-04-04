@@ -21,7 +21,7 @@ public class BattleDrawerTest extends JFrame {
 
         final BattleCollector battle = new BattleCollector();
         battle.onStart(500, 500);
-        Bullet bullet = new Bullet(1, new Point(100, 100), -45, 10, 0);
+        Bullet bullet = new Bullet(1, new Point(100, 100), -Math.PI/4, 10, 0);
         for (int i = 0; i < 1000; ++i) {
             bullet = new Bullet(
                     bullet.getId(),
