@@ -11,6 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
     , BodyTest.class
     , BulletTest.class
     , PlaneTest.class
+    , SimulationTest.class
     , WorldTest.class
 })
 public class AllTests {
