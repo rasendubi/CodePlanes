@@ -1,6 +1,6 @@
 package codeplanes;
 
-import java.awt.Point;
+import java.awt.geom.Point2D;
 
 /**
  * Represents bullet shot by player
@@ -14,7 +14,7 @@ public class Bullet extends Body {
      * @param speed Bullet's speed
      * @param playerId Id of player bullet belongs to
      */
-    public Bullet(final int id, final Point position, final double angle, final double speed, final int playerId) {
+    public Bullet(final int id, final Point2D position, final double angle, final double speed, final int playerId) {
         super(id, position, angle, speed);
         this.playerId = playerId;
     }

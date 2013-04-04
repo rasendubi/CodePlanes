@@ -1,6 +1,6 @@
 package codeplanes;
 
-import java.awt.Point;
+import java.awt.geom.Point2D;
 
 /**
  * Represents programmer-controllable plane
@@ -14,7 +14,7 @@ public class Plane extends Body {
      * @param speed Plane's speed
      * @param playerId Id of player plane belongs to
      */
-    public Plane(final int id, final Point position, final double angle, final double speed, final int playerId) {
+    public Plane(final int id, final Point2D position, final double angle, final double speed, final int playerId) {
         super(id, position, angle, speed);
         this.playerId = playerId;
     }

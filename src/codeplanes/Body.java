@@ -1,6 +1,6 @@
 package codeplanes;
 
-import java.awt.Point;
+import java.awt.geom.Point2D;
 
 /**
  * The common class for bodies in the battle simulation.
@@ -14,15 +14,15 @@ public class Body {
     /**
      * Coordinates of object in the world.
      */
-    final private Point position;
+    final private Point2D position;
 
     final private double angle;
 
     final private double speed;
 
-    public Body(final int id, final Point position, final double  angle, final double speed) {
+    public Body(final int id, final Point2D position, final double  angle, final double speed) {
         this.id = id;
-        this.position = new Point(position);
+        this.position = new Point2D.Double(position.getX(), position.getY());
         this.angle = angle;
         this.speed = speed;
     }
@@ -31,8 +31,8 @@ public class Body {
         return id;
     }
 
-    public final Point getPosition() {
-        return new Point(position);
+    public final Point2D getPosition() {
+        return new Point2D.Double(position.getX(), position.getY());
     }
 
     /**
