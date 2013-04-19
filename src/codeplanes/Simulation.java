@@ -1,6 +1,5 @@
 package codeplanes;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,17 +22,7 @@ public class Simulation extends Battle {
             final List<Bullet> bullets = new ArrayList<>();
 
             for (final Bullet bullet : world.getBullets()) {
-                final Point2D position = bullet.getPosition();
-                bullets.add(
-                        new Bullet(
-                                bullet.getId(),
-                                new Point2D.Double(position.getX() + bullet.getSpeed() * Math.cos(bullet.getAngle()),
-                                                   position.getY() + bullet.getSpeed() * Math.sin(bullet.getAngle())),
-                                bullet.getAngle(),
-                                bullet.getSpeed(),
-                                bullet.getPlayerId()
-                        )
-                );
+                bullets.add(bullet.movedForward());
             }
 
             world = new World(world.getTick() + 1, bullets);
