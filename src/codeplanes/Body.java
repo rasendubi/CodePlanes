@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 /**
  * The common class for bodies in the battle simulation.
  */
-public class Body {
+public abstract class Body {
 
     /**
      * Identifier of the object.
@@ -51,28 +51,4 @@ public class Body {
         return speed;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        long temp;
-        temp = angle != +0.0d ? Double.doubleToLongBits(angle) : 0L;
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = speed != +0.0d ? Double.doubleToLongBits(speed) : 0L;
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + position.hashCode();
-        return result;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (!(obj instanceof Body)) {
-            return false;
-        }
-
-        final Body that = (Body) obj;
-        return this.id == that.id &&
-               Double.compare(this.speed, that.speed) == 0 &&
-               Double.compare(this.angle, that.angle) == 0 &&
-               this.position.equals(that.position);
-    }
 }
