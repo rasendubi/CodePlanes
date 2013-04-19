@@ -51,4 +51,9 @@ public abstract class Body {
         return speed;
     }
 
+    /**
+     *
+     * @return new body moved forward (relatively to the current angle)
+     */
+    abstract public Body movedForward();
 }

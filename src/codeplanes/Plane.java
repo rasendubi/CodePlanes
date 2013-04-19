@@ -41,6 +41,19 @@ public class Plane extends Body {
     }
 
     @Override
+    public Plane movedForward() {
+        return new Plane(
+                getId(),
+                new Point2D.Double(
+                        getPosition().getX() + getSpeed() * Math.cos(getAngle()),
+                        getPosition().getY() + getSpeed() * Math.sin(getAngle())),
+                getAngle(),
+                getSpeed(),
+                getPlayerId()
+        );
+    }
+
+    @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + playerId;

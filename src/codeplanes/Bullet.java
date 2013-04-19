@@ -40,6 +40,19 @@ public class Bullet extends Body {
     }
 
     @Override
+    public Bullet movedForward() {
+        return new Bullet(
+                getId(),
+                new Point2D.Double(
+                        getPosition().getX() + getSpeed() * Math.cos(getAngle()),
+                        getPosition().getY() + getSpeed() * Math.sin(getAngle())),
+                getAngle(),
+                getSpeed(),
+                getPlayerId()
+        );
+    }
+
+    @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + playerId;
