@@ -1,17 +1,18 @@
 package codeplanes;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BattleTest {
 
     class TestBattle extends Battle {
-        World w1 = new World(1, new ArrayList<Bullet>());
-        World w2 = new World(2, new ArrayList<Bullet>());
+        World w1 = new World(1, new ArrayList<Bullet>(), new ArrayList<Plane>());
+        World w2 = new World(2, new ArrayList<Bullet>(), new ArrayList<Plane>());
 
         @Override
         protected void run() {

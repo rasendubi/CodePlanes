@@ -21,21 +21,20 @@ public class BattleDrawerTest extends JFrame {
 
         final BattleCollector battle = new BattleCollector();
         battle.onStart(500, 500);
-        Bullet bullet = new Bullet(1, new Point2D.Double(100, 100), -Math.PI/4, 10, 0);
+        Bullet bullet = new Bullet(1, new Point2D.Double(100, 100), -Math.PI/4, 1, 0);
+        Plane plane = new Plane(1, new Point2D.Double(50, 130), -Math.PI/3, 1, 0);
         for (int i = 0; i < 1000; ++i) {
-            bullet = new Bullet(
-                    bullet.getId(),
-                    new Point2D.Double(
-                            bullet.getPosition().getX() + Math.sqrt(2)*1,
-                            bullet.getPosition().getY() + Math.sqrt(2)*1
-                    ),
-                    bullet.getAngle(),
-                    bullet.getSpeed(),
-                    bullet.getPlayerId()
-            );
+            bullet = bullet.moveForward();
             List<Bullet> bullets = new ArrayList<>();
             bullets.add(bullet);
-            final World world = new World(i, bullets);
+
+            List<Plane> planes = new ArrayList<>();
+
+            plane = plane.moveForward();
+            plane = plane.setAngle(plane.getAngle() + 0.003);
+            planes.add(plane);
+
+            final World world = new World(i, bullets, planes);
             battle.onTurn(world);
         }
 

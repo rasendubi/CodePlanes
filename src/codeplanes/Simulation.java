@@ -20,12 +20,17 @@ public class Simulation extends Battle {
         turn(world);
         while (world.getTick() < maxTick) {
             final List<Bullet> bullets = new ArrayList<>();
+            final List<Plane> planes = new ArrayList<>();
 
             for (final Bullet bullet : world.getBullets()) {
-                bullets.add(bullet.movedForward());
+                bullets.add(bullet.moveForward());
             }
 
-            world = new World(world.getTick() + 1, bullets);
+            for (final Plane plane : world.getPlanes()) {
+                planes.add(plane.moveForward());
+            }
+
+            world = new World(world.getTick() + 1, bullets, planes);
             turn(world);
         }
     }

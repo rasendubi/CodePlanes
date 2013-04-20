@@ -16,9 +16,9 @@ public class BattleCollectorTest {
 
     class TestBattle extends Battle {
         World[] worlds = {
-                new World(1, new ArrayList<Bullet>()),
-                new World(2, new ArrayList<Bullet>()),
-                new World(3, new ArrayList<Bullet>())
+                new World(1, new ArrayList<Bullet>(), new ArrayList<Plane>()),
+                new World(2, new ArrayList<Bullet>(), new ArrayList<Plane>()),
+                new World(3, new ArrayList<Bullet>(), new ArrayList<Plane>())
         };
 
         @Override
@@ -72,9 +72,9 @@ public class BattleCollectorTest {
     public void testTransfer() {
         final BattleCollector sender = new BattleCollector();
         sender.onStart(800, 600);
-        sender.onTurn(new World(1, new ArrayList<Bullet>()));
-        sender.onTurn(new World(3, new ArrayList<Bullet>()));
-        sender.onTurn(new World(2, new ArrayList<Bullet>()));
+        sender.onTurn(new World(1, new ArrayList<Bullet>(), new ArrayList<Plane>()));
+        sender.onTurn(new World(3, new ArrayList<Bullet>(), new ArrayList<Plane>()));
+        sender.onTurn(new World(2, new ArrayList<Bullet>(), new ArrayList<Plane>()));
 
         final BattleCollector receiver = new BattleCollector();
         sender.addHandler(receiver);
@@ -96,11 +96,11 @@ public class BattleCollectorTest {
 
         assertFalse(collector.iterator().hasNext());
 
-        collector.onTurn(new World(1, new ArrayList<Bullet>()));
+        collector.onTurn(new World(1, new ArrayList<Bullet>(), new ArrayList<Plane>()));
 
         final Iterator<World> it = collector.iterator();
         assertTrue(it.hasNext());
-        assertEquals(it.next(), new World(1, new ArrayList<Bullet>()));
+        assertEquals(it.next(), new World(1, new ArrayList<Bullet>(), new ArrayList<Plane>()));
     }
 
     @Test(expected = NoSuchElementException.class)

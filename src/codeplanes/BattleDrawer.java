@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Class which draws battle course.
  */
 public class BattleDrawer extends JPanel implements Battle.Handler {
-    private World world = new World(0, new ArrayList<Bullet>());
+    private World world;
     private int delay = 10;
 
     void setDelay(final int delay) {
@@ -18,7 +18,7 @@ public class BattleDrawer extends JPanel implements Battle.Handler {
 
     @Override
     public void onStart(final double width, final double height) {
-        world = new World(0, new ArrayList<Bullet>());
+        world = new World(0, new ArrayList<Bullet>(), new ArrayList<Plane>());
         setSize((int)width, (int)height);
         repaint();
     }
