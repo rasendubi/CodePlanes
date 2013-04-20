@@ -50,7 +50,7 @@ public class Bullet extends Body {
                 getId(),
                 new Point2D.Double(
                         getPosition().getX() + getSpeed() * Math.cos(getAngle()),
-                        getPosition().getY() + getSpeed() * Math.sin(getAngle())),
+                        getPosition().getY() - getSpeed() * Math.sin(getAngle())),
                 getAngle(),
                 getSpeed(),
                 getPlayerId()
