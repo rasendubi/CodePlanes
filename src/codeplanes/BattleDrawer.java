@@ -49,11 +49,45 @@ public class BattleDrawer extends JPanel implements Battle.Handler {
 
         // Draw bullets
         for (final Bullet bullet : world.getBullets()) {
-            g.drawRect(
-                    (int)bullet.getPosition().getX(),
-                    (int)bullet.getPosition().getY(),
-                    5,5
-            );
+            drawBullet(g, bullet);
         }
+
+        // Draw planes
+        for (final Plane plane : world.getPlanes()) {
+            drawPlane(g, plane);
+        }
+    }
+
+    public void drawBullet(final Graphics g, Bullet bullet) {
+        g.drawRect(
+                (int)bullet.getPosition().getX(),
+                (int)bullet.getPosition().getY(),
+                5,5
+        );
+    }
+
+    public void drawPlane(final Graphics g, Plane plane) {
+        final int centerX = (int) plane.getPosition().getX();
+        final int centerY = (int) plane.getPosition().getY();
+
+        // circle
+        final int circleRadius = 3;
+        g.drawOval(centerX - circleRadius, centerY - circleRadius, 2 * circleRadius, 2 * circleRadius);
+
+        // line
+        final int lineLength = 20;
+        g.drawLine(centerX, centerY,
+                (int)(centerX + lineLength * Math.cos(plane.getAngle())),
+                (int)(centerY - lineLength * Math.sin(plane.getAngle())));
+
+        // arc
+        final int arcRadius = 20;
+        g.drawArc(
+                centerX - arcRadius,
+                centerY - arcRadius,
+                2 * arcRadius, 2 * arcRadius,
+                plane.getAngleInDegrees() - 45,
+                90
+        );
     }
 }
