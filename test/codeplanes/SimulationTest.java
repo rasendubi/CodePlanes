@@ -1,12 +1,13 @@
 package codeplanes;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class SimulationTest {
 
