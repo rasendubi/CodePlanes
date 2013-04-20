@@ -40,7 +40,12 @@ public class Bullet extends Body {
     }
 
     @Override
-    public Bullet movedForward() {
+    public Bullet setAngle(double angle) {
+        return new Bullet(getId(), getPosition(), angle, getSpeed(), playerId);
+    }
+
+    @Override
+    public Bullet moveForward() {
         return new Bullet(
                 getId(),
                 new Point2D.Double(

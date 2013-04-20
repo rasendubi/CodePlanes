@@ -43,6 +43,10 @@ public abstract class Body {
         return angle;
     }
 
+    public final int getAngleInDegrees() {
+        return (int)(180 * angle / Math.PI) % 360;
+    }
+
     /**
      *
      * @return speed of bullet
@@ -53,7 +57,14 @@ public abstract class Body {
 
     /**
      *
+     * @param angle new angle of the plane
+     * @return Body with changed angle
+     */
+    abstract public Body setAngle(double angle);
+
+    /**
+     *
      * @return new body moved forward (relatively to the current angle)
      */
-    abstract public Body movedForward();
+    abstract public Body moveForward();
 }

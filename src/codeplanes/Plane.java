@@ -41,7 +41,12 @@ public class Plane extends Body {
     }
 
     @Override
-    public Plane movedForward() {
+    public Plane setAngle(double angle) {
+        return new Plane(getId(), getPosition(), angle, getSpeed(), playerId);
+    }
+
+    @Override
+    public Plane moveForward() {
         return new Plane(
                 getId(),
                 new Point2D.Double(
