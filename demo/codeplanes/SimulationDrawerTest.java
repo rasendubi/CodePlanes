@@ -9,6 +9,8 @@ public class SimulationDrawerTest extends JFrame {
     static class TestStrategy implements Strategy {
         @Override
         public void turn(Plane plane, World world, Move move) {
+            //move.setAngle(100500);
+            move.setAngle(Math.random() - Math.random());
             move.setFire(true);
         }
     }

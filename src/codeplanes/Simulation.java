@@ -12,6 +12,7 @@ public class Simulation extends Battle {
     final double initialSpeed = 2;
     final int initialReload = 5;
     private int maxReloadTime = 75;
+    final double maxAngle = Math.PI/120;
 
     Simulation(final List<Strategy> strategies, final double width, final double height, final int maxTick) {
         this.strategies = strategies;
@@ -47,6 +48,14 @@ public class Simulation extends Battle {
                     plane = plane.setReloadTime(maxReloadTime);
                     bullets.add( new Bullet(nextId(), plane.getPosition(), plane.getAngle(), plane.getSpeed()*2, plane.getPlayerId()) );
                 }
+
+                double angle;
+                if (move.getAngle() > 0) {
+                    angle = Math.min(move.getAngle(), maxAngle);
+                } else {
+                    angle = Math.max(move.getAngle(), -maxAngle);
+                }
+                plane = plane.setAngle(plane.getAngle() + angle);
 
                 planes.add(plane.moveForward());
             }
