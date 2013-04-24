@@ -8,10 +8,10 @@ import java.util.List;
  * Class which represents new battle simulation.
  */
 public class Simulation extends Battle {
-
+    // Simulation constants
     final double initialSpeed = 2;
     final int initialReload = 5;
-    private int maxReloadTime = 75;
+    final int maxReloadTime = 75;
     final double maxAngle = Math.PI/120;
 
     Simulation(final List<Strategy> strategies, final double width, final double height, final int maxTick) {
@@ -20,6 +20,7 @@ public class Simulation extends Battle {
         this.height = height;
         this.maxTick = maxTick;
 
+        // Initial position for two planes
         final List<Plane> planes = new ArrayList<>();
         planes.add( new Plane(nextId(), new Point2D.Double(width/10, height/2), 0, initialSpeed, 0, initialReload) );
         planes.add( new Plane(nextId(), new Point2D.Double(width*9/10, height/2), Math.PI, initialSpeed, 1, initialReload) );
@@ -38,6 +39,8 @@ public class Simulation extends Battle {
             final List<Plane> planes = new ArrayList<>();
 
             for (Bullet bullet : world.getBullets()) {
+
+                // Wall collision
                 bullet = bullet.moveForward();
                 Point2D position = bullet.getPosition();
                 if (position.getX() > 0 && position.getX() < width &&
@@ -47,15 +50,19 @@ public class Simulation extends Battle {
             }
 
             for (Plane plane : world.getPlanes()) {
+
+                // Get player's move
                 Move move = new Move();
                 Strategy strategy = strategies.get(plane.getPlayerId());
                 strategy.turn(plane, world, move);
 
+                // If player fires
                 if (move.getFire() && plane.getReloadTime() == 0) {
                     plane = plane.setReloadTime(maxReloadTime);
                     bullets.add( new Bullet(nextId(), plane.getPosition(), plane.getAngle(), plane.getSpeed()*2, plane.getPlayerId()) );
                 }
 
+                // Turn plane
                 double angle;
                 if (move.getAngle() > 0) {
                     angle = Math.min(move.getAngle(), maxAngle);
@@ -64,6 +71,7 @@ public class Simulation extends Battle {
                 }
                 plane = plane.setAngle(plane.getAngle() + angle);
 
+                // Wall collision
                 plane = plane.moveForward();
                 Point2D position = plane.getPosition();
                 if (position.getX() > 0 && position.getX() < width &&
