@@ -11,13 +11,23 @@ import static org.junit.Assert.assertEquals;
 
 public class SimulationTest {
 
+    class TestStrategy implements Strategy {
+        @Override
+        public void turn(Plane plane, World world, Move move) {
+
+        }
+    }
+
     @Test
     public void testMove() {
 
         final List<Bullet> bullets = new ArrayList<>();
         bullets.add(new Bullet(1, new Point2D.Double(20, 100), -Math.PI/6, 2, 3));
-        final World world = new World(0, bullets, new ArrayList<Plane>());
-        final Simulation simulation = new Simulation(world, 800, 600, 4);
+        List<Strategy> strategies = new ArrayList<>();
+        strategies.add( new TestStrategy() );
+        strategies.add( new TestStrategy() );
+
+        final Simulation simulation = new Simulation(strategies, 800, 600, 4);
 
         final BattleCollector collector = new BattleCollector();
         simulation.addHandler(collector);

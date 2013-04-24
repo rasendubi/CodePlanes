@@ -1,5 +1,6 @@
 package codeplanes;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,11 +8,21 @@ import java.util.List;
  * Class which represents new battle simulation.
  */
 public class Simulation extends Battle {
-    Simulation(final World world, final double width, final double height, final int maxTick) {
-        this.world = world;
+
+    final double initialSpeed = 2;
+    final int initialReload = 5;
+
+    Simulation(final List<Strategy> strategies, final double width, final double height, final int maxTick) {
+        this.strategies = strategies;
         this.width = width;
         this.height = height;
         this.maxTick = maxTick;
+
+        final List<Plane> planes = new ArrayList<>();
+        planes.add( new Plane(nextId(), new Point2D.Double(width/10, height/2), 0, initialSpeed, 0, initialReload) );
+        planes.add( new Plane(nextId(), new Point2D.Double(width*9/10, height/2), Math.PI, initialSpeed, 1, initialReload) );
+
+        world = new World(0, new ArrayList<Bullet>(), planes);
     }
 
     public void run() {
@@ -27,6 +38,12 @@ public class Simulation extends Battle {
             }
 
             for (final Plane plane : world.getPlanes()) {
+                Move move = new Move();
+                Strategy strategy = strategies.get(plane.getPlayerId());
+                strategy.turn(plane, world, move);
+
+
+
                 planes.add(plane.moveForward());
             }
 
@@ -35,8 +52,15 @@ public class Simulation extends Battle {
         }
     }
 
+    private int nextId() {
+        return maxId++;
+    }
+
+    private final List<Strategy> strategies;
     private World world;
     private final double width;
     private final double height;
     private final int maxTick;
+
+    private int maxId;
 }

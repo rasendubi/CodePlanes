@@ -24,8 +24,9 @@ public class World {
      * @param tick Number of battle tick.
      */
     @JsonCreator
-    World(@JsonProperty("tick") final int tick, @JsonProperty("bullets") final List<Bullet>
-            bullets, @JsonProperty("planes") final List<Plane> planes) {
+    World(@JsonProperty("tick") final int tick,
+          @JsonProperty("bullets") final List<Bullet> bullets,
+          @JsonProperty("planes") final List<Plane> planes) {
         this.tick = tick;
         this.bullets = new ArrayList<>(bullets);
         this.planes = new ArrayList<>(planes);

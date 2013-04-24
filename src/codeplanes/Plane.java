@@ -6,6 +6,7 @@ import java.awt.geom.Point2D;
  * Represents programmer-controllable plane
  */
 public class Plane extends Body {
+
     /**
      * Plane constructor
      * @param id unique identifier of the plane
@@ -14,9 +15,11 @@ public class Plane extends Body {
      * @param speed Plane's speed
      * @param playerId Id of player plane belongs to
      */
-    public Plane(final int id, final Point2D position, final double angle, final double speed, final int playerId) {
+    public Plane(final int id, final Point2D position, final double angle, final double speed, final int playerId,
+                 final int reloadTime) {
         super(id, position, angle, speed);
         this.playerId = playerId;
+        this.reloadTime = reloadTime;
     }
 
     /**
@@ -25,6 +28,10 @@ public class Plane extends Body {
      */
     public final int getPlayerId() {
         return playerId;
+    }
+
+    public final int getReloadTime() {
+        return reloadTime;
     }
 
 
@@ -42,7 +49,7 @@ public class Plane extends Body {
 
     @Override
     public Plane setAngle(double angle) {
-        return new Plane(getId(), getPosition(), angle, getSpeed(), playerId);
+        return new Plane(getId(), getPosition(), angle, getSpeed(), getPlayerId(), getReloadTime());
     }
 
     @Override
@@ -54,7 +61,8 @@ public class Plane extends Body {
                         getPosition().getY() - getSpeed() * Math.sin(getAngle())),
                 getAngle(),
                 getSpeed(),
-                getPlayerId()
+                getPlayerId(),
+                Math.max(0, getReloadTime() - 1)
         );
     }
 
@@ -66,4 +74,5 @@ public class Plane extends Body {
     }
 
     private final int playerId;
+    private final int reloadTime;
 }

@@ -22,7 +22,7 @@ public class BattleDrawerTest extends JFrame {
         final BattleCollector battle = new BattleCollector();
         battle.onStart(500, 500);
         Bullet bullet = new Bullet(1, new Point2D.Double(100, 100), -Math.PI/4, 1, 0);
-        Plane plane = new Plane(1, new Point2D.Double(50, 130), -Math.PI/3, 1, 0);
+        Plane plane = new Plane(1, new Point2D.Double(50, 130), -Math.PI/3, 1, 0, 0);
         for (int i = 0; i < 1000; ++i) {
             bullet = bullet.moveForward();
             List<Bullet> bullets = new ArrayList<>();
