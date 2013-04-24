@@ -31,6 +31,8 @@ public class Simulation extends Battle {
         start(width, height);
 
         turn(world);
+
+        outer:
         while (world.getTick() < maxTick) {
             final List<Bullet> bullets = new ArrayList<>();
             final List<Plane> planes = new ArrayList<>();
@@ -65,8 +67,10 @@ public class Simulation extends Battle {
                 plane = plane.moveForward();
                 Point2D position = plane.getPosition();
                 if (position.getX() > 0 && position.getX() < width &&
-                        position.getY() > 0 && position.getY() < height) {
+                    position.getY() > 0 && position.getY() < height) {
                     planes.add(plane);
+                } else {
+                    break outer;
                 }
             }
 
