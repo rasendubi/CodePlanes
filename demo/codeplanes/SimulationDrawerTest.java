@@ -9,7 +9,7 @@ public class SimulationDrawerTest extends JFrame {
     static class TestStrategy implements Strategy {
         @Override
         public void turn(Plane plane, World world, Move move) {
-
+            move.setFire(true);
         }
     }
 

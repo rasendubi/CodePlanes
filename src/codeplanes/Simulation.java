@@ -11,6 +11,7 @@ public class Simulation extends Battle {
 
     final double initialSpeed = 2;
     final int initialReload = 5;
+    private int maxReloadTime = 75;
 
     Simulation(final List<Strategy> strategies, final double width, final double height, final int maxTick) {
         this.strategies = strategies;
@@ -37,12 +38,15 @@ public class Simulation extends Battle {
                 bullets.add(bullet.moveForward());
             }
 
-            for (final Plane plane : world.getPlanes()) {
+            for (Plane plane : world.getPlanes()) {
                 Move move = new Move();
                 Strategy strategy = strategies.get(plane.getPlayerId());
                 strategy.turn(plane, world, move);
 
-
+                if (move.getFire() && plane.getReloadTime() == 0) {
+                    plane = plane.setReloadTime(maxReloadTime);
+                    bullets.add( new Bullet(nextId(), plane.getPosition(), plane.getAngle(), plane.getSpeed()*2, plane.getPlayerId()) );
+                }
 
                 planes.add(plane.moveForward());
             }
