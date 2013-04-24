@@ -35,8 +35,13 @@ public class Simulation extends Battle {
             final List<Bullet> bullets = new ArrayList<>();
             final List<Plane> planes = new ArrayList<>();
 
-            for (final Bullet bullet : world.getBullets()) {
-                bullets.add(bullet.moveForward());
+            for (Bullet bullet : world.getBullets()) {
+                bullet = bullet.moveForward();
+                Point2D position = bullet.getPosition();
+                if (position.getX() > 0 && position.getX() < width &&
+                    position.getY() > 0 && position.getY() < height) {
+                    bullets.add(bullet);
+                }
             }
 
             for (Plane plane : world.getPlanes()) {
@@ -57,7 +62,12 @@ public class Simulation extends Battle {
                 }
                 plane = plane.setAngle(plane.getAngle() + angle);
 
-                planes.add(plane.moveForward());
+                plane = plane.moveForward();
+                Point2D position = plane.getPosition();
+                if (position.getX() > 0 && position.getX() < width &&
+                        position.getY() > 0 && position.getY() < height) {
+                    planes.add(plane);
+                }
             }
 
             world = new World(world.getTick() + 1, bullets, planes);
