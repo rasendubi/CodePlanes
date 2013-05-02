@@ -53,12 +53,12 @@ public class Plane extends Body {
 
     }
 
-    public Plane setReloadTime(int reloadTime) {
+    public Plane setReloadTime(final int reloadTime) {
         return new Plane(getId(), getPosition(), getAngle(), getSpeed(), getPlayerId(), reloadTime);
     }
 
     @Override
-    public Plane setAngle(double angle) {
+    public Plane setAngle(final double angle) {
         return new Plane(getId(), getPosition(), angle, getSpeed(), getPlayerId(), getReloadTime());
     }
 

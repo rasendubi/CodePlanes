@@ -42,7 +42,7 @@ public class Simulation extends Battle {
 
                 // Wall collision
                 bullet = bullet.moveForward();
-                Point2D position = bullet.getPosition();
+                final Point2D position = bullet.getPosition();
                 if (position.getX() > 0 && position.getX() < width &&
                     position.getY() > 0 && position.getY() < height) {
                     bullets.add(bullet);
@@ -52,8 +52,8 @@ public class Simulation extends Battle {
             for (Plane plane : world.getPlanes()) {
 
                 // Get player's move
-                Move move = new Move();
-                Strategy strategy = strategies.get(plane.getPlayerId());
+                final Move move = new Move();
+                final Strategy strategy = strategies.get(plane.getPlayerId());
                 strategy.turn(plane, world, move);
 
                 // If player fires
@@ -63,7 +63,7 @@ public class Simulation extends Battle {
                 }
 
                 // Turn plane
-                double angle;
+                final double angle;
                 if (move.getAngle() > 0) {
                     angle = Math.min(move.getAngle(), maxAngle);
                 } else {
@@ -73,7 +73,7 @@ public class Simulation extends Battle {
 
                 // Wall collision
                 plane = plane.moveForward();
-                Point2D position = plane.getPosition();
+                final Point2D position = plane.getPosition();
                 if (position.getX() > 0 && position.getX() < width &&
                     position.getY() > 0 && position.getY() < height) {
                     planes.add(plane);

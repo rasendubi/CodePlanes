@@ -25,10 +25,10 @@ public class BattleDrawerTest extends JFrame {
         Plane plane = new Plane(1, new Point2D.Double(50, 130), -Math.PI/3, 1, 0, 0);
         for (int i = 0; i < 1000; ++i) {
             bullet = bullet.moveForward();
-            List<Bullet> bullets = new ArrayList<>();
+            final List<Bullet> bullets = new ArrayList<>();
             bullets.add(bullet);
 
-            List<Plane> planes = new ArrayList<>();
+            final List<Plane> planes = new ArrayList<>();
 
             plane = plane.moveForward();
             plane = plane.setAngle(plane.getAngle() + 0.003);

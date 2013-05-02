@@ -58,7 +58,7 @@ public class BattleDrawer extends JPanel implements Battle.Handler {
         }
     }
 
-    public void drawBullet(final Graphics g, Bullet bullet) {
+    public void drawBullet(final Graphics g, final Bullet bullet) {
         g.drawRect(
                 (int)bullet.getPosition().getX(),
                 (int)bullet.getPosition().getY(),
@@ -66,7 +66,7 @@ public class BattleDrawer extends JPanel implements Battle.Handler {
         );
     }
 
-    public void drawPlane(final Graphics g, Plane plane) {
+    public void drawPlane(final Graphics g, final Plane plane) {
         final int centerX = (int) plane.getPosition().getX();
         final int centerY = (int) plane.getPosition().getY();
 

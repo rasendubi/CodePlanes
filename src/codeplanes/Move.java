@@ -2,11 +2,11 @@ package codeplanes;
 
 public class Move {
 
-    public void setFire(boolean fire) {
+    public void setFire(final boolean fire) {
         this.fire = fire;
     }
 
-    public void setAngle(double angle) {
+    public void setAngle(final double angle) {
         this.angle = angle;
     }
 

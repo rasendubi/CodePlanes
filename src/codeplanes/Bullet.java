@@ -46,7 +46,7 @@ public class Bullet extends Body {
     }
 
     @Override
-    public Bullet setAngle(double angle) {
+    public Bullet setAngle(final double angle) {
         return new Bullet(getId(), getPosition(), angle, getSpeed(), playerId);
     }
 

@@ -69,7 +69,7 @@ public abstract class Body {
     abstract public Body moveForward();
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -77,7 +77,7 @@ public abstract class Body {
             return false;
         }
 
-        Body body = (Body) o;
+        final Body body = (Body) o;
 
         if (Double.compare(body.angle, angle) != 0) {
             return false;
