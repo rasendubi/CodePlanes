@@ -70,15 +70,27 @@ public abstract class Body {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Body)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Body)) {
+            return false;
+        }
 
         Body body = (Body) o;
 
-        if (Double.compare(body.angle, angle) != 0) return false;
-        if (id != body.id) return false;
-        if (Double.compare(body.speed, speed) != 0) return false;
-        if (!position.equals(body.position)) return false;
+        if (Double.compare(body.angle, angle) != 0) {
+            return false;
+        }
+        if (id != body.id) {
+            return false;
+        }
+        if (Double.compare(body.speed, speed) != 0) {
+            return false;
+        }
+        if (!position.equals(body.position)) {
+            return false;
+        }
 
         return true;
     }
