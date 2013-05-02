@@ -88,11 +88,8 @@ public abstract class Body {
         if (Double.compare(body.speed, speed) != 0) {
             return false;
         }
-        if (!position.equals(body.position)) {
-            return false;
-        }
+        return position.equals(body.position);
 
-        return true;
     }
 
     @Override
