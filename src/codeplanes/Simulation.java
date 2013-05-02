@@ -15,7 +15,7 @@ public class Simulation extends Battle {
     final double maxAngle = Math.PI/120;
 
     Simulation(final List<Strategy> strategies, final double width, final double height, final int maxTick) {
-        this.strategies = strategies;
+        this.strategies = new ArrayList<>(strategies);
         this.width = width;
         this.height = height;
         this.maxTick = maxTick;
