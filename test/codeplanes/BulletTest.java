@@ -1,26 +1,25 @@
 package codeplanes;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.HashSet;
+
+import static org.junit.Assert.*;
 
 public class BulletTest {
     final private Bullet bullet1 = new Bullet(0, new Point(1,1), 3.1, 3.3, 0);
     final private Bullet bullet2 = new Bullet(0, new Point(1,1), 3.1, 3.3, 0);
     final private Bullet bullet3 = new Bullet(3, new Point(3,3), 2.2, 9.9, 4);
 
-    //@Test
+    @Test
     public void testEquals() {
         assertEquals(bullet1, bullet2);
         assertFalse(bullet1.equals(bullet3));
     }
 
-    //@Test
+    @Test
     public void testHashCode() {
-
         assertEquals(bullet1.hashCode(), bullet2.hashCode());
 
         HashSet<Bullet> hashSet = new HashSet<>();
