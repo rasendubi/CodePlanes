@@ -35,7 +35,7 @@ public class SimulationDrawerTest extends JFrame {
 
         battleDrawerTest.setBattle(battle);
 
-        battleDrawerTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        battleDrawerTest.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         battleDrawerTest.setVisible(true);
         battleDrawerTest.setSize(500,500);
 
