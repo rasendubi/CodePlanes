@@ -20,7 +20,6 @@ public class Follower implements Strategy {
             while (turnAngle < -Math.PI) {
                 turnAngle += 2*Math.PI;
             }
-            System.out.println(turnAngle);
             move.setAngle(turnAngle);
             if (turnAngle < Math.PI/600 * myPos.distance(enemyPos)) {
                 move.setFire(true);
