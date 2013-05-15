@@ -76,10 +76,20 @@ public class Simulation extends Battle {
                 final Point2D position = plane.getPosition();
                 if (position.getX() > 0 && position.getX() < width &&
                     position.getY() > 0 && position.getY() < height) {
-                    planes.add(plane);
                 } else {
                     break outer;
                 }
+
+                // Battle-plane collision
+                for (final Bullet bullet : bullets) {
+                    Point2D p1 = bullet.getPosition();
+                    Point2D p2 = plane.getPosition();
+                    if (p1.distance(p2) < 5 && Math.abs(bullet.getAngle() - plane.getAngle()) > Math.PI/6) {
+                        break outer;
+                    }
+                }
+
+                planes.add(plane);
             }
 
             world = new World(world.getTick() + 1, bullets, planes);
