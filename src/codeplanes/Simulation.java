@@ -33,8 +33,7 @@ public class Simulation extends Battle {
 
         turn(world);
 
-        outer:
-        while (world.getTick() < maxTick) {
+        while (world.getTick() < maxTick && world.getPlanes().size() > 1) {
             final List<Bullet> bullets = new ArrayList<>();
             final List<Plane> planes = new ArrayList<>();
 
@@ -49,6 +48,7 @@ public class Simulation extends Battle {
                 }
             }
 
+            plane:
             for (Plane plane : world.getPlanes()) {
 
                 // Get player's move
@@ -77,15 +77,15 @@ public class Simulation extends Battle {
                 if (position.getX() > 0 && position.getX() < width &&
                     position.getY() > 0 && position.getY() < height) {
                 } else {
-                    break outer;
+                    break plane;
                 }
 
-                // Battle-plane collision
+                // Plane-bullet collision
                 for (final Bullet bullet : bullets) {
                     Point2D p1 = bullet.getPosition();
                     Point2D p2 = plane.getPosition();
-                    if (p1.distance(p2) < 5 && Math.abs(bullet.getAngle() - plane.getAngle()) > Math.PI/6) {
-                        break outer;
+                    if (p1.distance(p2) < 5 && bullet.getPlayerId() != plane.getPlayerId()) {
+                        break plane;
                     }
                 }
 

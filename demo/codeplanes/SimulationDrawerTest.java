@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import codeplanes.bots.Follower;
+
 public class SimulationDrawerTest extends JFrame {
     static class TestStrategy implements Strategy {
         @Override
@@ -29,7 +31,7 @@ public class SimulationDrawerTest extends JFrame {
 
         final List<Strategy> strategies = new ArrayList<>();
         strategies.add( new TestStrategy() );
-        strategies.add( new TestStrategy() );
+        strategies.add( new Follower() );
 
         final Simulation battle = new Simulation(strategies, 800, 600, 4000);
 
