@@ -77,7 +77,7 @@ public class Simulation extends Battle {
                 if (position.getX() > 0 && position.getX() < width &&
                     position.getY() > 0 && position.getY() < height) {
                 } else {
-                    break plane;
+                    continue plane;
                 }
 
                 // Plane-bullet collision
@@ -85,7 +85,7 @@ public class Simulation extends Battle {
                     Point2D p1 = bullet.getPosition();
                     Point2D p2 = plane.getPosition();
                     if (p1.distance(p2) < 5 && bullet.getPlayerId() != plane.getPlayerId()) {
-                        break plane;
+                        continue plane;
                     }
                 }
 
