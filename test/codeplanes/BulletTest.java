@@ -3,14 +3,15 @@ package codeplanes;
 import org.junit.Test;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.HashSet;
 
 import static org.junit.Assert.*;
 
 public class BulletTest {
-    final private Bullet bullet1 = new Bullet(0, new Point(1,1), 3.1, 3.3, 0);
-    final private Bullet bullet2 = new Bullet(0, new Point(1,1), 3.1, 3.3, 0);
-    final private Bullet bullet3 = new Bullet(3, new Point(3,3), 2.2, 9.9, 4);
+    final private Bullet bullet1 = new Bullet(0, new Point2D.Double(1,1), 3.1, 3.3, 0);
+    final private Bullet bullet2 = new Bullet(0, new Point2D.Double(1,1), 3.1, 3.3, 0);
+    final private Bullet bullet3 = new Bullet(3, new Point2D.Double(3,3), 2.2, 9.9, 4);
 
     @Test
     public void testEquals() {

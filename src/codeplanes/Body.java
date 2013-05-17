@@ -1,5 +1,7 @@
 package codeplanes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.awt.geom.Point2D;
 
 /**
@@ -14,13 +16,13 @@ public abstract class Body {
     /**
      * Coordinates of object in the world.
      */
-    final private Point2D position;
+    final private Point2D.Double position;
 
     final private double angle;
 
     final private double speed;
 
-    public Body(final int id, final Point2D position, final double  angle, final double speed) {
+    public Body(final int id, final Point2D.Double position, final double  angle, final double speed) {
         this.id = id;
         this.position = new Point2D.Double(position.getX(), position.getY());
         this.angle = angle;
@@ -31,7 +33,7 @@ public abstract class Body {
         return id;
     }
 
-    public final Point2D getPosition() {
+    public final Point2D.Double getPosition() {
         return new Point2D.Double(position.getX(), position.getY());
     }
 
@@ -43,6 +45,7 @@ public abstract class Body {
         return angle;
     }
 
+    @JsonIgnore
     public final int getAngleInDegrees() {
         return (int)(180 * angle / Math.PI) % 360;
     }
@@ -79,16 +82,8 @@ public abstract class Body {
 
         final Body body = (Body) o;
 
-        if (Double.compare(body.angle, angle) != 0) {
-            return false;
-        }
-        if (id != body.id) {
-            return false;
-        }
-        if (Double.compare(body.speed, speed) != 0) {
-            return false;
-        }
-        return position.equals(body.position);
+        return Double.compare(body.angle, angle) == 0 && id == body.id &&
+               Double.compare(body.speed, speed) == 0 && position.equals(body.position);
 
     }
 

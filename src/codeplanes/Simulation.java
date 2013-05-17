@@ -74,10 +74,9 @@ public class Simulation extends Battle {
                 // Wall collision
                 plane = plane.moveForward();
                 final Point2D position = plane.getPosition();
-                if (position.getX() > 0 && position.getX() < width &&
-                    position.getY() > 0 && position.getY() < height) {
-                } else {
-                    continue plane;
+                if (position.getX() <= 0 || position.getX() >= width ||
+                    position.getY() <= 0 || position.getY() >= height) {
+                    continue;
                 }
 
                 // Plane-bullet collision

@@ -1,5 +1,7 @@
 package codeplanes;
 
+import codeplanes.bots.Follower;
+import codeplanes.bots.RandomStrategy;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -8,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
@@ -123,6 +126,27 @@ public class BattleCollectorTest {
 
         testBattle.addHandler(written);
         testBattle.run();
+
+        written.serialize(file);
+
+        final BattleCollector read = BattleCollector.deserialize(file);
+
+        assertEquals(written, read);
+    }
+
+    @Test
+    public void testRandomSerialization() throws IOException {
+        final File file = temp.newFile("random_test.json");
+
+        final List<Strategy> strategies = new ArrayList<>();
+        strategies.add( new RandomStrategy() );
+        strategies.add( new Follower() );
+        final Battle battle = new Simulation(strategies, 800, 600, 1000);
+
+        final BattleCollector written = new BattleCollector();
+
+        battle.addHandler(written);
+        battle.run();
 
         written.serialize(file);
 

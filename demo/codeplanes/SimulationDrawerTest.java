@@ -5,16 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import codeplanes.bots.Follower;
+import codeplanes.bots.RandomStrategy;
 
 public class SimulationDrawerTest extends JFrame {
-    static class TestStrategy implements Strategy {
-        @Override
-        public void turn(final Plane plane, final World world, final Move move) {
-            //move.setAngle(100500);
-            move.setAngle(Math.random() - Math.random());
-            move.setFire(true);
-        }
-    }
 
     private final BattleDrawer battleDrawer = new BattleDrawer();
 
@@ -30,7 +23,7 @@ public class SimulationDrawerTest extends JFrame {
         final SimulationDrawerTest battleDrawerTest = new SimulationDrawerTest();
 
         final List<Strategy> strategies = new ArrayList<>();
-        strategies.add( new TestStrategy() );
+        strategies.add( new RandomStrategy() );
         strategies.add( new Follower() );
 
         final Simulation battle = new Simulation(strategies, 800, 600, 4000);

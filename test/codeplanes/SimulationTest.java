@@ -20,9 +20,6 @@ public class SimulationTest {
 
     @Test
     public void testMove() {
-
-        final List<Bullet> bullets = new ArrayList<>();
-        bullets.add(new Bullet(1, new Point2D.Double(20, 100), -Math.PI/6, 2, 3));
         List<Strategy> strategies = new ArrayList<>();
         strategies.add( new TestStrategy() );
         strategies.add( new TestStrategy() );

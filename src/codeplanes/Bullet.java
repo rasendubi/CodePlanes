@@ -1,5 +1,8 @@
 package codeplanes;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.awt.geom.Point2D;
 
 /**
@@ -14,7 +17,12 @@ public class Bullet extends Body {
      * @param speed Bullet's speed
      * @param playerId Id of player bullet belongs to
      */
-    public Bullet(final int id, final Point2D position, final double angle, final double speed, final int playerId) {
+    @JsonCreator
+    public Bullet(@JsonProperty("id") final int id,
+                  @JsonProperty("position") final Point2D.Double position,
+                  @JsonProperty("angle") final double angle,
+                  @JsonProperty("speed") final double speed,
+                  @JsonProperty("playerId") final int playerId) {
         super(id, position, angle, speed);
         this.playerId = playerId;
     }
